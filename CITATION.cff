@@ -1,0 +1,7 @@
+cff-version: 1.2.0
+message: "Please cite this work when using, reproducing, or adapting it."
+title: "kate-travel-updated-source"
+authors:
+  - family-names: Menefee
+    given-names: Trey
+repository-code: "https://github.com/TreyModels/kate-travel-updated-source"
