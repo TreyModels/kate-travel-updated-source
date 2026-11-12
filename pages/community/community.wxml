@@ -1,0 +1,55 @@
+<view class="page-safe-bottom">
+  <view class="container" style="padding-top:32rpx;">
+    <view class="h1">旅友故事</view>
+    <view class="muted small" style="margin-top:8rpx;">
+      来自真实旅途的记录（发布前均已获得本人授权）
+    </view>
+
+    <view class="story card" wx:for="{{stories}}" wx:key="id">
+      <view class="story-head">
+        <view class="story-avatar">{{item.name[0]}}</view>
+        <view class="story-head-main">
+          <view class="story-name">{{item.name}} · {{item.city}}</view>
+          <view class="muted small">{{item.trip}}</view>
+        </view>
+        <view class="story-like {{liked[item.id] ? 'liked' : ''}}" data-id="{{item.id}}" bindtap="like">
+          ❤️ {{item.likes}}
+        </view>
+      </view>
+      <view class="story-title">{{item.title}}</view>
+      <view class="story-content {{expanded[item.id] ? '' : 'clamp'}}">{{item.content}}</view>
+      <view class="story-more accent small" data-id="{{item.id}}" bindtap="toggleExpand">
+        {{expanded[item.id] ? '收起' : '展开全文'}}
+      </view>
+      <view class="story-tags">
+        <text class="tag tag-accent" wx:for="{{item.tags}}" wx:for-item="t" wx:key="*this">{{t}}</text>
+      </view>
+    </view>
+
+    <!-- 线下活动 -->
+    <view class="section">
+      <view class="h2">线下活动</view>
+      <view class="muted small" style="margin:8rpx 0 20rpx;">旅行之外的姐妹局，常来常往</view>
+      <view class="event card" wx:for="{{events}}" wx:key="id">
+        <view class="event-top">
+          <view class="event-city">{{item.city}}</view>
+          <view class="event-date muted small">{{item.date}} · 限 {{item.quota}} 人</view>
+        </view>
+        <view class="event-title">{{item.title}}</view>
+        <view class="muted small">{{item.desc}}</view>
+        <view class="event-btn" data-ev="{{item}}" bindtap="joinEvent">预约名额</view>
+      </view>
+    </view>
+
+    <!-- 推荐有奖 -->
+    <view class="section">
+      <view class="refer card">
+        <view class="h3">👭 推荐有礼</view>
+        <view class="muted small" style="margin-top:12rpx;">
+          邀请闺蜜报名同行，双方各得 ¥200 旅行基金，可用于任意行程或升级项目。
+        </view>
+        <button class="btn-primary" style="margin-top:24rpx;" open-type="share">分享给闺蜜</button>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,143 @@
+<view wx:if="{{trip}}">
+
+  <!-- 封面 -->
+  <view class="d-cover theme-{{trip.coverTheme}}">
+    <text class="d-cover-emoji">{{trip.coverEmoji}}</text>
+    <view class="d-cover-content">
+      <text class="badge {{trip.statusCls}}">{{trip.statusText}}</text>
+      <view class="d-title">{{trip.title}}</view>
+      <view class="d-tagline">{{trip.tagline}}</view>
+      <view class="d-meta">
+        {{trip.days}} 天 {{trip.nights}} 晚 · {{trip.groupSize}} · {{trip.ageRange}}
+      </view>
+    </view>
+  </view>
+
+  <!-- 团期 -->
+  <view class="container section">
+    <view class="h2">出发团期</view>
+    <view class="muted small" style="margin:8rpx 0 20rpx;">余位与价格以持牌合作旅行社确认为准</view>
+    <view class="dep card" wx:for="{{trip.departures}}" wx:key="date">
+      <view>
+        <view class="dep-date">{{item.date}}</view>
+        <view class="muted small" wx:if="{{item.status === 'planning'}}">行程筹备中，可预约咨询</view>
+        <view class="muted small" wx:elif="{{item.left > 0}}">仅剩 {{item.left}} 席</view>
+        <view class="muted small" wx:else>本期已满，可预约候补</view>
+      </view>
+      <view class="dep-right">
+        <text class="badge {{statusMap[item.status].cls}}">{{statusMap[item.status].text}}</text>
+        <view
+          class="dep-btn {{item.status === 'full' ? 'dep-btn-disabled' : ''}}"
+          data-date="{{item.date}}"
+          bindtap="goInquiry"
+        >{{item.status === 'full' ? '预约候补' : '咨询报名'}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 亮点 -->
+  <view class="container section">
+    <view class="h2">行程亮点</view>
+    <view class="hl-wrap">
+      <view class="hl-chip" wx:for="{{trip.highlights}}" wx:key="*this">{{item}}</view>
+    </view>
+  </view>
+
+  <!-- 每日行程 -->
+  <view class="container section">
+    <view class="h2">每日安排</view>
+    <view class="muted small" style="margin:8rpx 0 28rpx;">集体活动 + 自由探索，节奏张弛有度</view>
+    <view class="day" wx:for="{{trip.itinerary}}" wx:key="day">
+      <view class="day-num">D{{item.day}}</view>
+      <view class="day-body card">
+        <view class="day-title">{{item.title}}</view>
+        <view class="day-desc">{{item.desc}}</view>
+        <view class="day-foot muted small">
+          <text wx:if="{{item.meals !== '—'}}">餐食：{{item.meals}}</text>
+          <text wx:if="{{item.hotel !== '—'}}" style="margin-left:24rpx;">住：{{item.hotel}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 住宿 -->
+  <view class="container section">
+    <view class="h2">住在哪里</view>
+    <view class="muted small" style="margin:8rpx 0 20rpx;">出行前提供具体酒店名称与地址，可自行查验</view>
+    <view class="hotel card" wx:for="{{trip.hotels}}" wx:key="name">
+      <view class="hotel-name">{{item.name}}</view>
+      <view class="muted small">{{item.desc}}</view>
+    </view>
+  </view>
+
+  <!-- 升级体验 -->
+  <view class="container section" wx:if="{{trip.upgrades.length}}">
+    <view class="h2">可选升级</view>
+    <view class="muted small" style="margin:8rpx 0 20rpx;">可用性与价格以运营方确认为准</view>
+    <view class="up card" wx:for="{{trip.upgrades}}" wx:key="id">
+      <view>
+        <view class="up-name">{{item.name}}</view>
+        <view class="muted small">{{item.desc}}</view>
+      </view>
+      <view class="up-price">+¥{{item.price}}</view>
+    </view>
+    <view class="btn-ghost" style="margin-top:12rpx;" bindtap="goCustomize">挑选更多体验 →</view>
+  </view>
+
+  <!-- 费用说明 -->
+  <view class="container section">
+    <view class="h2">费用说明</view>
+    <view class="fee card">
+      <view class="fee-block">
+        <view class="fee-title">✅ 费用包含</view>
+        <view class="fee-item" wx:for="{{trip.includes}}" wx:key="*this">· {{item}}</view>
+      </view>
+      <view class="fee-block">
+        <view class="fee-title">➖ 费用不含</view>
+        <view class="fee-item" wx:for="{{trip.excludes}}" wx:key="*this">· {{item}}</view>
+      </view>
+      <view class="fee-block" wx:if="{{trip.price}}">
+        <view class="fee-title">📄 退改与合同</view>
+        <view class="fee-item">· 报名后由持牌旅行社签署正规出境游合同</view>
+        <view class="fee-item">· 取消与退款规则在合同中明确约定，无隐形消费</view>
+        <view class="fee-item">· 全程含境外旅游保险，出行前可查验保单</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 领队 -->
+  <view class="container section">
+    <view class="h2">带队的人</view>
+    <view class="host card">
+      <view class="host-avatar">{{trip.host.initial}}</view>
+      <view>
+        <view class="host-name">{{trip.host.name}}</view>
+        <view class="muted small">{{trip.host.bio}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 运营方 -->
+  <view class="container section" wx:if="{{trip.price}}">
+    <view class="operator card">
+      <view class="h3">运营与资质</view>
+      <view class="muted small" style="margin-top:12rpx;">
+        本行程的出境游合同、收款与地接操作由具备出境游业务资质的持牌旅行社及目的地合格供应商执行。凯特旅行负责行程设计、社区运营与体验把控。
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部操作栏 -->
+  <view class="d-bar">
+    <view class="d-bar-price">
+      <text class="d-price-num">{{trip.price ? "¥" + trip.price : "价格待定"}}</text>
+      <text class="muted small" wx:if="{{trip.price}}">/人起</text>
+      <view class="muted small">{{trip.priceNote}}</view>
+    </view>
+    <view class="d-bar-actions">
+      <view class="d-bar-ghost" bindtap="copyWechat">加微信</view>
+      <view class="d-bar-primary" bindtap="goInquiry">咨询报名</view>
+    </view>
+  </view>
+  <view style="height:150rpx;"></view>
+</view>

@@ -1,0 +1,96 @@
+<view>
+  <view class="adm-head">
+    <view class="h2" style="color:#fff;">管理端</view>
+    <view class="muted small" style="color:rgba(255,255,255,0.7);margin-top:6rpx;">
+      演示版 · 数据存于本机，正式环境对接后端与 CRM
+    </view>
+  </view>
+
+  <!-- 分栏 -->
+  <view class="adm-tabs">
+    <view class="adm-tab {{tab === 'overview' ? 'on' : ''}}" data-tab="overview" bindtap="switchTab">概览</view>
+    <view class="adm-tab {{tab === 'inquiries' ? 'on' : ''}}" data-tab="inquiries" bindtap="switchTab">咨询线索</view>
+    <view class="adm-tab {{tab === 'trips' ? 'on' : ''}}" data-tab="trips" bindtap="switchTab">行程管理</view>
+    <view class="adm-tab {{tab === 'content' ? 'on' : ''}}" data-tab="content" bindtap="switchTab">内容</view>
+  </view>
+
+  <view class="container">
+
+    <!-- 概览 -->
+    <block wx:if="{{tab === 'overview'}}">
+      <view class="stat-grid">
+        <view class="stat card"><view class="stat-num">{{stats.tripCount}}</view><view class="stat-label">线路总数</view></view>
+        <view class="stat card"><view class="stat-num">{{stats.recruiting}}</view><view class="stat-label">招募中</view></view>
+        <view class="stat card"><view class="stat-num accent">{{stats.inquiryCount}}</view><view class="stat-label">咨询线索</view></view>
+        <view class="stat card"><view class="stat-num accent">{{stats.pending}}</view><view class="stat-label">待联系</view></view>
+        <view class="stat card"><view class="stat-num">{{stats.booked}}</view><view class="stat-label">已报名</view></view>
+        <view class="stat card"><view class="stat-num">{{stats.storyCount}}</view><view class="stat-label">旅友故事</view></view>
+      </view>
+      <view class="adm-note card">
+        <view class="h3">待办</view>
+        <view class="muted small" style="margin-top:12rpx;" wx:if="{{stats.pending > 0}}">
+          有 {{stats.pending}} 条咨询等待联系，请尽快跟进。
+        </view>
+        <view class="muted small" style="margin-top:12rpx;" wx:else>
+          暂无待联系咨询。保持内容更新，旅友故事是最好的获客素材。
+        </view>
+      </view>
+    </block>
+
+    <!-- 咨询线索 -->
+    <block wx:if="{{tab === 'inquiries'}}">
+      <view wx:if="{{inquiries.length === 0}}" class="muted" style="text-align:center;padding:80rpx 0;">
+        暂无咨询记录
+      </view>
+      <view class="adm-inq card" wx:for="{{inquiries}}" wx:key="id">
+        <view class="adm-inq-top">
+          <view class="adm-inq-name">{{item.name}} <text class="muted small">{{item.city}}</text></view>
+          <view class="adm-status" data-id="{{item.id}}" data-status="{{item.status}}" bindtap="advanceInquiry">
+            {{inqText[item.status]}} ⇄
+          </view>
+        </view>
+        <view class="small" style="margin-top:8rpx;">{{item.tripTitle}} · {{item.date}} · {{item.people}}</view>
+        <view class="muted small" style="margin-top:8rpx;">
+          微信：<text class="accent" data-wechat="{{item.wechat}}" bindtap="copyInquiryWechat">{{item.wechat}}（复制）</text>
+          <text wx:if="{{item.phone}}"> · 电话：{{item.phone}}</text>
+        </view>
+        <view wx:if="{{item.note}}" class="muted small" style="margin-top:8rpx;">备注：{{item.note}}</view>
+        <view class="muted small" style="margin-top:8rpx;">提交于 {{item.createdText}}</view>
+      </view>
+    </block>
+
+    <!-- 行程管理 -->
+    <block wx:if="{{tab === 'trips'}}">
+      <view class="muted small" style="padding:20rpx 0;">
+        点击状态可循环切换（招募中 → 已成团 → 已满员 → 规划中）。演示环境仅本机生效。
+      </view>
+      <view class="adm-trip card" wx:for="{{trips}}" wx:key="id">
+        <view class="adm-trip-main">
+          <view class="adm-trip-title">{{item.title}}</view>
+          <view class="muted small">{{item.days}} 天 · ¥{{item.price}} · {{item.countryName}}</view>
+        </view>
+        <view class="adm-status" data-id="{{item.id}}" data-status="{{item.status}}" bindtap="cycleTripStatus">
+          {{item.statusText}} ⇄
+        </view>
+      </view>
+    </block>
+
+    <!-- 内容 -->
+    <block wx:if="{{tab === 'content'}}">
+      <view class="h3" style="margin-top:28rpx;">旅友故事（{{stories.length}}）</view>
+      <view class="adm-content card" wx:for="{{stories}}" wx:key="id">
+        <view class="adm-trip-title">{{item.title}}</view>
+        <view class="muted small">{{item.name}} · {{item.city}} · ❤️ {{item.likes}}</view>
+      </view>
+      <view class="h3" style="margin-top:36rpx;">线下活动（{{events.length}}）</view>
+      <view class="adm-content card" wx:for="{{events}}" wx:key="id">
+        <view class="adm-trip-title">{{item.title}}</view>
+        <view class="muted small">{{item.city}} · {{item.date}} · 限 {{item.quota}} 人</view>
+      </view>
+      <view class="muted small" style="margin:32rpx 0 80rpx;">
+        内容编辑在演示版中为内置数据，正式环境将接入 CMS 后台。
+      </view>
+    </block>
+
+  </view>
+</view>

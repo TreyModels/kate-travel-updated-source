@@ -1,0 +1,34 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/trips/trips",
+    "pages/community/community",
+    "pages/mine/mine",
+    "pages/detail/detail",
+    "pages/inquiry/inquiry",
+    "pages/customize/customize",
+    "pages/about/about",
+    "pages/admin/admin"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#F3F8FC",
+    "navigationBarTitleText": "凯特旅行",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#F3F8FC",
+    "backgroundTextStyle": "dark"
+  },
+  "tabBar": {
+    "custom": true,
+    "color": "#668099",
+    "selectedColor": "#F47735",
+    "backgroundColor": "#FFFFFF",
+    "list": [
+      { "pagePath": "pages/home/home", "text": "首页" },
+      { "pagePath": "pages/trips/trips", "text": "探索行程" },
+      { "pagePath": "pages/community/community", "text": "旅友故事" },
+      { "pagePath": "pages/mine/mine", "text": "我的" }
+    ]
+  },
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

@@ -1,0 +1,41 @@
+<view>
+  <view class="a-hero">
+    <view class="a-avatar">K</view>
+    <view class="a-name">Kate</view>
+    <view class="a-role">凯特旅行主理人 · 旅行策划人</view>
+  </view>
+
+  <view class="container" style="padding-top:48rpx;">
+    <view class="a-para">
+      你好，我是 Kate。
+    </view>
+    <view class="a-para">
+      2016 年我第一次一个人出国旅行。在清迈的青旅里，我和五个不同国家的女生挤在天台聊天到深夜。那是我第一次发现：旅行最好的纪念品，是旅途中遇到的人。
+    </view>
+    <view class="a-para">
+      后来我走过东南亚的大街小巷，也在欧洲旅居过半年。回国后我发现身边很多姐妹和我一样：想看世界，却总凑不到朋友的时间；自由行做攻略太累，传统跟团又像被赶鸭子。
+    </view>
+    <view class="a-para">
+      所以有了凯特旅行——8-10 个年龄相仿的女生，一个有温度的好行程，一位全程陪伴的领队。你只管带上行李箱来，剩下的交给朋友。
+    </view>
+
+    <view class="section">
+      <view class="h2">我的旅行足迹</view>
+      <view class="ms" wx:for="{{milestones}}" wx:key="year">
+        <view class="ms-year">{{item.year}}</view>
+        <view class="ms-text">{{item.text}}</view>
+      </view>
+    </view>
+
+    <view class="section">
+      <view class="quote">
+        「一个人出发，一群朋友回来。」
+      </view>
+      <view class="muted small" style="text-align:center;margin-top:12rpx;">
+        这句话是我们的 slogan，也是我想送给每个女生的心愿。
+      </view>
+    </view>
+
+    <view class="btn-primary" style="margin:56rpx 0;" bindtap="copyWechat">加 Kate 微信聊聊：{{wechat}}</view>
+  </view>
+</view>

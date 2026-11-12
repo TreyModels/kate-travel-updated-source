@@ -1,0 +1,53 @@
+.sum { padding: 28rpx; margin-top: 28rpx; }
+.sum-title { font-weight: 700; font-size: 30rpx; margin-bottom: 6rpx; }
+.sum-dates { display: flex; flex-wrap: wrap; margin-top: 18rpx; }
+.date-chip {
+  padding: 10rpx 24rpx;
+  border-radius: 999rpx;
+  border: 2rpx solid #E5D9CC;
+  color: #6B6259;
+  font-size: 24rpx;
+  margin: 0 14rpx 14rpx 0;
+}
+.date-chip.on {
+  border-color: #F47735;
+  background: #FBE9DF;
+  color: #F47735;
+  font-weight: 600;
+}
+
+.form { padding: 32rpx 28rpx; margin-top: 28rpx; }
+.field { margin-bottom: 28rpx; }
+.field:last-child { margin-bottom: 0; }
+.label { font-size: 26rpx; font-weight: 600; margin-bottom: 12rpx; }
+.input {
+  background: #FBF6F0;
+  border-radius: 16rpx;
+  padding: 20rpx 24rpx;
+  font-size: 28rpx;
+}
+.picker-input { color: #2E2A26; }
+.textarea {
+  background: #FBF6F0;
+  border-radius: 16rpx;
+  padding: 20rpx 24rpx;
+  font-size: 28rpx;
+  height: 160rpx;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.success {
+  padding: 160rpx 48rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.success-emoji { font-size: 100rpx; }
+.success-wechat {
+  color: #F47735;
+  font-weight: 700;
+  font-size: 30rpx;
+  margin: 16rpx 0 48rpx;
+}
+.success-btn { width: 100%; }

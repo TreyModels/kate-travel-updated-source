@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "凯特旅行",
+  "usingComponents": {
+    "trip-card": "/components/trip-card/index"
+  }
+}

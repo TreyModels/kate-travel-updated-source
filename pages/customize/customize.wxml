@@ -1,0 +1,29 @@
+<view class="page-safe-bottom">
+  <view class="container" style="padding-top:32rpx;">
+    <view class="h1">定制你的体验</view>
+    <view class="muted small" style="margin-top:8rpx;">
+      <block wx:if="{{trip}}">为「{{trip.title}}」挑选升级项目，</block>
+      具体可用性与价格以运营方确认为准。
+    </view>
+
+    <view
+      class="addon card {{selected.indexOf(item.id) >= 0 ? 'on' : ''}}"
+      wx:for="{{addons}}"
+      wx:key="id"
+      data-id="{{item.id}}"
+      bindtap="toggle"
+    >
+      <text class="addon-icon">{{item.icon}}</text>
+      <view class="addon-body">
+        <view class="addon-name">{{item.name}}</view>
+        <view class="muted small">{{item.desc}}</view>
+        <view class="addon-price">¥{{item.priceFrom}} 起</view>
+      </view>
+      <view class="addon-check">{{selected.indexOf(item.id) >= 0 ? '✓' : ''}}</view>
+    </view>
+
+    <view class="btn-primary" style="margin-top:40rpx;" bindtap="goInquiry">
+      带着心愿单去咨询{{selected.length ? '（已选 ' + selected.length + ' 项）' : ''}}
+    </view>
+  </view>
+</view>

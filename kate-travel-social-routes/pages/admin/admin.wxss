@@ -1,0 +1,63 @@
+.adm-head {
+  background: #123D67;
+  padding: 80rpx 32rpx 40rpx;
+}
+.adm-tabs {
+  display: flex;
+  background: #fff;
+  border-bottom: 1rpx solid #F5EDE4;
+}
+.adm-tab {
+  flex: 1;
+  text-align: center;
+  padding: 24rpx 0;
+  font-size: 26rpx;
+  color: #668099;
+}
+.adm-tab.on {
+  color: #F47735;
+  font-weight: 700;
+  border-bottom: 4rpx solid #F47735;
+}
+
+.stat-grid {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 28rpx;
+}
+.stat {
+  width: calc(33.33% - 16rpx);
+  margin: 0 24rpx 24rpx 0;
+  padding: 28rpx 0;
+  text-align: center;
+  box-sizing: border-box;
+}
+.stat:nth-child(3n) { margin-right: 0; }
+.stat-num { font-size: 44rpx; font-weight: 700; }
+.stat-label { font-size: 22rpx; color: #668099; margin-top: 6rpx; }
+
+.adm-note { padding: 28rpx; margin-top: 8rpx; }
+
+.adm-inq { padding: 28rpx; margin-top: 20rpx; }
+.adm-inq-top { display: flex; justify-content: space-between; align-items: center; }
+.adm-inq-name { font-weight: 700; font-size: 30rpx; }
+.adm-status {
+  color: #F47735;
+  font-size: 24rpx;
+  border: 2rpx solid #F47735;
+  border-radius: 999rpx;
+  padding: 6rpx 20rpx;
+  flex-shrink: 0;
+}
+
+.adm-trip {
+  padding: 24rpx 28rpx;
+  margin-top: 16rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.adm-trip-main { flex: 1; margin-right: 20rpx; }
+.adm-trip-title { font-weight: 600; font-size: 26rpx; margin-bottom: 4rpx; }
+
+.adm-content { padding: 24rpx 28rpx; margin-top: 16rpx; }

@@ -1,0 +1,29 @@
+<view class="trip-card card" bindtap="goDetail">
+  <view class="cover theme-{{trip.coverTheme}}">
+    <text class="cover-emoji">{{trip.coverEmoji}}</text>
+    <view class="cover-top">
+      <text class="cover-country">{{trip.countryName}}</text>
+      <text class="badge {{trip.statusCls}}">{{trip.statusText}}</text>
+    </view>
+    <view class="cover-bottom">
+      <text class="cover-tagline">{{trip.tagline}}</text>
+    </view>
+  </view>
+  <view class="body">
+    <view class="title">{{trip.title}}</view>
+    <view class="meta">
+      <text class="meta-item">{{trip.days}} 天 {{trip.nights}} 晚</text>
+      <text class="dot">·</text>
+      <text class="meta-item">{{trip.groupSize}}</text>
+      <text class="dot">·</text>
+      <text class="meta-item">{{trip.ageRange}}</text>
+    </view>
+    <view class="hl">
+      <text wx:for="{{trip.highlights}}" wx:key="*this" class="hl-item">{{item}}</text>
+    </view>
+    <view class="foot">
+      <view class="price" wx:if="{{trip.price}}"><text class="price-num">{{trip.price}}</text><text class="price-unit"> 元/人起</text></view><view class="price" wx:else>价格待定</view>
+      <text class="cta">查看行程 →</text>
+    </view>
+  </view>
+</view>

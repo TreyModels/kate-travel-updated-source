@@ -1,0 +1,59 @@
+<view class="page-safe-bottom">
+  <!-- 用户头部 -->
+  <view class="m-hero">
+    <view class="m-avatar">旅</view>
+    <view class="m-name">亲爱的旅人</view>
+    <view class="m-sub">一个人出发，一群朋友回来。</view>
+  </view>
+
+  <view class="container">
+    <!-- 我的咨询 -->
+    <view class="section">
+      <view class="h2">我的咨询</view>
+      <view wx:if="{{inquiries.length === 0}}" class="empty-inq card">
+        <text class="empty-emoji">🧳</text>
+        <view class="muted small" style="margin-top:16rpx;">还没有咨询记录，去探索行程看看？</view>
+      </view>
+      <view class="inq card" wx:for="{{inquiries}}" wx:key="id" data-id="{{item.tripId}}" bindtap="goTrip">
+        <view class="inq-top">
+          <view class="inq-title">{{item.tripTitle}}</view>
+          <text class="badge {{inqStatus[item.status].cls}}">{{inqStatus[item.status].text}}</text>
+        </view>
+        <view class="muted small" style="margin-top:8rpx;">
+          团期：{{item.date}} · {{item.people}} · 提交于 {{item.createdText}}
+        </view>
+        <view wx:if="{{item.note}}" class="inq-note small">“{{item.note}}”</view>
+      </view>
+    </view>
+
+    <!-- 功能列表 -->
+    <view class="section">
+      <view class="menu card">
+        <view class="menu-item" bindtap="showService">
+          <text class="menu-icon">💬</text>
+          <text class="menu-text">联系客服 / 紧急联系</text>
+          <text class="menu-arrow">›</text>
+        </view>
+        <view class="menu-item" bindtap="goAbout">
+          <text class="menu-icon">🌏</text>
+          <text class="menu-text">关于 Kate 与品牌故事</text>
+          <text class="menu-arrow">›</text>
+        </view>
+        <view class="menu-item">
+          <text class="menu-icon">📜</text>
+          <text class="menu-text">合同与支付由持牌旅行社完成</text>
+          <text class="menu-arrow">›</text>
+        </view>
+        <view class="menu-item" bindtap="goAdmin">
+          <text class="menu-icon">⚙️</text>
+          <text class="menu-text">管理端（内部）</text>
+          <text class="menu-arrow">›</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="muted small" style="text-align:center;margin-top:48rpx;">
+      凯特旅行 Kate Travel · 与持牌出境旅行社合作运营
+    </view>
+  </view>
+</view>

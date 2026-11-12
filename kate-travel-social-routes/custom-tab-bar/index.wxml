@@ -1,0 +1,18 @@
+<view class="tabbar">
+  <view
+    wx:for="{{list}}"
+    wx:key="path"
+    class="tab-item {{selected === index ? 'active' : ''}}"
+    data-path="{{item.path}}"
+    data-index="{{index}}"
+    bindtap="switchTab"
+  >
+    <view class="icon icon-{{item.icon}}">
+      <view wx:if="{{item.icon === 'home'}}" class="shape-home"></view>
+      <view wx:if="{{item.icon === 'compass'}}" class="shape-compass"><view class="needle"></view></view>
+      <view wx:if="{{item.icon === 'heart'}}" class="shape-heart"></view>
+      <view wx:if="{{item.icon === 'user'}}" class="shape-user"><view class="head"></view><view class="body"></view></view>
+    </view>
+    <text class="tab-text">{{item.text}}</text>
+  </view>
+</view>

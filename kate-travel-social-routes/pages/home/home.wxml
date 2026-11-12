@@ -1,0 +1,98 @@
+<view class="page-safe-bottom">
+
+  <!-- 首屏 -->
+  <view class="hero">
+    <image class="hero-photo" src="https://images.pexels.com/photos/35430576/pexels-photo-35430576.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1200" mode="aspectFill" />
+    <view class="hero-shade"></view>
+    <view class="hero-inner">
+      <view class="hero-brand">Kate Travel · 凯特旅行</view>
+      <view class="hero-slogan">一个人出发，</view>
+      <view class="hero-slogan accent-light">一群朋友回来。</view>
+      <view class="hero-sub">{{subSlogan}}</view>
+      <view class="hero-actions">
+        <view class="btn-primary hero-btn" bindtap="goTrips">看看最近的团</view>
+        <view class="btn-ghost-light hero-btn" bindtap="goAbout">认识主理人 Kate</view>
+      </view>
+    </view>
+
+  </view>
+
+  <!-- 怎么玩 -->
+  <view class="container section">
+    <view class="h2">社交小团，怎么玩？</view>
+    <view class="muted small" style="margin-top:8rpx;">不是传统跟团游，也不是孤单的自由行</view>
+    <view class="steps">
+      <view class="step card" wx:for="{{steps}}" wx:key="title">
+        <text class="step-icon">{{item.icon}}</text>
+        <view class="step-title">{{item.title}}</view>
+        <view class="step-desc">{{item.desc}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 精选行程 -->
+  <view class="container section">
+    <view class="section-head">
+      <view class="h2">精选行程</view>
+      <text class="section-more" bindtap="goTrips">全部行程 →</text>
+    </view>
+    <trip-card wx:for="{{featured}}" wx:key="id" trip="{{item}}" />
+  </view>
+
+  <!-- 为什么放心 -->
+  <view class="trust">
+    <view class="container">
+      <view class="h2" style="color:#fff;">为什么可以放心出发</view>
+      <view class="trust-grid">
+        <view class="trust-item" wx:for="{{trustItems}}" wx:key="title">
+          <text class="trust-icon">{{item.icon}}</text>
+          <view class="trust-title">{{item.title}}</view>
+          <view class="trust-desc">{{item.desc}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 旅友故事 -->
+  <view class="container section">
+    <view class="section-head">
+      <view class="h2">她们的故事</view>
+      <text class="section-more" bindtap="goCommunity">更多故事 →</text>
+    </view>
+    <view class="story card" wx:for="{{stories}}" wx:key="id" bindtap="goCommunity">
+      <view class="story-head">
+        <view class="story-avatar">{{item.name[0]}}</view>
+        <view>
+          <view class="story-name">{{item.name}} · {{item.city}}</view>
+          <view class="story-trip muted small">{{item.trip}}</view>
+        </view>
+      </view>
+      <view class="story-title">{{item.title}}</view>
+      <view class="story-content">{{item.content}}</view>
+    </view>
+  </view>
+
+  <!-- 定制体验入口 -->
+  <view class="container section">
+    <view class="custom-banner card" bindtap="goCustomize">
+      <view>
+        <view class="h3">定制你的旅行体验</view>
+        <view class="muted small" style="margin-top:8rpx;">旅拍 / 单房 / SPA / 出海 / 美食探店…</view>
+      </view>
+      <text class="custom-arrow">→</text>
+    </view>
+  </view>
+
+  <!-- 底部咨询 -->
+  <view class="container section">
+    <view class="contact-card">
+      <view class="h3">想去的团没有合适日期？</view>
+      <view class="muted small" style="margin:8rpx 0 24rpx;">加 Kate 微信，告诉她你的时间和想去的地方，凑齐姐妹就开团。</view>
+      <view class="btn-primary" bindtap="copyWechat">复制微信号：{{wechat}}</view>
+    </view>
+    <view class="footer muted small">
+      凯特旅行 Kate Travel · 与持牌出境旅行社合作运营
+    </view>
+  </view>
+
+</view>

@@ -1,0 +1,44 @@
+<view class="page-safe-bottom">
+  <view class="container" style="padding-top:24rpx;">
+    <view class="h1">探索行程</view>
+    <view class="muted small" style="margin-top:8rpx;">
+      8-10 人小团 · 23-35 岁女生 · 团期与余位以合作旅行社实时数据为准
+    </view>
+  </view>
+
+  <!-- 目的地筛选 -->
+  <scroll-view scroll-x class="filter-scroll" enhanced show-scrollbar="{{false}}">
+    <view class="filter-row">
+      <view
+        wx:for="{{countries}}"
+        wx:key="id"
+        class="filter-chip {{country === item.id ? 'on' : ''}}"
+        data-id="{{item.id}}"
+        bindtap="pickCountry"
+      >{{item.name}}</view>
+    </view>
+  </scroll-view>
+
+  <!-- 风格筛选 -->
+  <scroll-view scroll-x class="filter-scroll" enhanced show-scrollbar="{{false}}">
+    <view class="filter-row">
+      <view
+        wx:for="{{styles}}"
+        wx:key="id"
+        class="filter-chip chip-light {{style === item.id ? 'on' : ''}}"
+        data-id="{{item.id}}"
+        bindtap="pickStyle"
+      >{{item.name}}</view>
+    </view>
+  </scroll-view>
+
+  <view class="container">
+    <view class="muted small result-count">共 {{total}} 条线路</view>
+    <trip-card wx:for="{{list}}" wx:key="id" trip="{{item}}" />
+    <view wx:if="{{total === 0}}" class="empty">
+      <text class="empty-emoji">🧭</text>
+      <view class="empty-text">这个方向暂时没有线路</view>
+      <view class="muted small">换个目的地或风格试试，或加 Kate 微信定制</view>
+    </view>
+  </view>
+</view>

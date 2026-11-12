@@ -1,0 +1,51 @@
+.story { padding: 32rpx; margin-top: 24rpx; }
+.story-head { display: flex; align-items: center; margin-bottom: 20rpx; }
+.story-avatar {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #E08E63, #F47735);
+  color: #fff;
+  font-size: 32rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20rpx;
+}
+.story-head-main { flex: 1; }
+.story-name { font-weight: 600; }
+.story-like { font-size: 24rpx; color: #668099; }
+.story-like.liked { color: #F47735; }
+.story-title { font-size: 30rpx; font-weight: 700; margin-bottom: 12rpx; }
+.story-content { font-size: 26rpx; color: #6B6259; line-height: 1.8; }
+.story-content.clamp {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+.story-more { margin-top: 10rpx; }
+.story-tags { margin-top: 16rpx; }
+
+.event { padding: 28rpx; margin-top: 20rpx; }
+.event-top { display: flex; justify-content: space-between; align-items: center; }
+.event-city {
+  background: #FBE9DF;
+  color: #F47735;
+  font-size: 22rpx;
+  font-weight: 600;
+  padding: 4rpx 18rpx;
+  border-radius: 8rpx;
+}
+.event-title { font-weight: 700; font-size: 30rpx; margin: 14rpx 0 8rpx; }
+.event-btn {
+  margin-top: 20rpx;
+  text-align: center;
+  border: 2rpx solid #F47735;
+  color: #F47735;
+  border-radius: 999rpx;
+  padding: 14rpx 0;
+  font-size: 26rpx;
+}
+
+.refer { padding: 32rpx; margin-top: 20rpx; background: linear-gradient(135deg, #FFF9F2, #FBE9DF); }
